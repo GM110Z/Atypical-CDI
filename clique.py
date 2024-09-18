@@ -119,3 +119,14 @@ if __name__ == "__main__":
     print(f"Updated clustering table saved to {updated_file_path}.")
     print(f"Similarity report saved to {similarity_report_path}.")
     print(f"Genome grouping table saved to {grouping_table_path}.")
+
+# Step4:combine grouping with coordinates for next step. 
+df1 = pd.read_csv('genome_grouping_table.csv', sep=",")  # Adjust the delimiter as needed
+df2 = pd.read_csv('coordinates-table.csv', sep=",")  # Adjust the delimiter as needed
+
+# Merge the two DataFrames on the 'Genome' column
+merged_df = pd.merge(df1, df2, on='Genome')
+
+# Save the combined DataFrame to a new CSV file
+merged_df.to_csv('combined_table.csv', index=False)
+
